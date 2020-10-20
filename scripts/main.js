@@ -24,9 +24,9 @@ const connectHTMLElems  = () => {
     viewElems.weatherCity = getDOMElem('weatherCity');
     viewElems.weatherIcon = getDOMElem('weatherIcon');
 
-    viewElems.weatherCity = getDOMElem('weatherCity');
+    viewElems.weatherCurrentTemp = getDOMElem('weatherCurrentTemp');
     viewElems.weatherMaxTemp = getDOMElem('weatherMaxTemp');
-    viewElems.weatherMaxTemp = getDOMElem('weatherMaxTemp');
+    viewElems.weatherMinTemp = getDOMElem('weatherMinTemp');
 
     viewElems.returnToSearchBtn = getDOMElem('returnToSearchBtn');
 }
@@ -52,9 +52,7 @@ const onEnterSubmit = event => {
 
         let query = viewElems.searchInput.value;
         getWeatherByCity(query).then(data => {
-            console.log(data);
-            switchView();
-            fadeInOut();
+            displayWeatherData(data);
         });
 
     }
@@ -64,17 +62,35 @@ const onEnterSubmit = event => {
 
 const onClickSubmit = () => {
     fadeInOut();
-
     let query = viewElems.searchInput.value;
         getWeatherByCity(query).then(data => {
-            console.log(data);
-            switchView();
-            fadeInOut();
-
+        displayWeatherData(data)
         });
 }
 
+const displayWeatherData = data => {
+    switchView();
+    fadeInOut();
 
+    const weather = data.consolidated_weather[0];
+
+
+    viewElems.weatherCity.innerText = data.title;
+    viewElems.weatherIcon.src = `https://www.metaweather.com/static/img/weather/${weather.weather_state_abbr}.svg`
+    viewElems.weatherIcon.alt = weather.weather_state_name;
+
+    
+    const currTemp = weather.the_temp.toFixed(2);
+    const maxTemp = weather.max_temp.toFixed(2);
+    const minTemp = weather.min_temp.toFixed(2);
+
+
+    viewElems.weatherCurrentTemp.innerText = `Current temperature: ${currTemp}°C`;
+    viewElems.weatherMaxTemp.innerText = `Max temperature: ${maxTemp}°C`;
+    viewElems.weatherMinTemp.innerText = `Min temperature: ${minTemp}°C`;
+
+
+}
 
 const fadeInOut = () => {
     if (viewElems.mainContainer.style.opacity === '1' || viewElems.mainContainer.style.opacity === '') {
@@ -103,6 +119,8 @@ const returnToSearch = () => {
         fadeInOut();
     }, 1000);
 }
+
+
 
 
 
