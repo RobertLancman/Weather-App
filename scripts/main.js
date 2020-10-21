@@ -78,7 +78,7 @@ class WeatherApp  {
         const weather = data.consolidated_weather[0];
     console.log(weather);
     
-        this.viewElems.weatherCity.innerText = data.title;
+        this.viewElems.weatherCity.innerText = `Weather in ${data.title}`;
         this.viewElems.weatherIcon.src = `https://www.metaweather.com/static/img/weather/${weather.weather_state_abbr}.svg`
         
         this.viewElems.wind_direction_compass.innerText = weather.wind_direction_compass; 
@@ -89,12 +89,12 @@ class WeatherApp  {
         this.viewElems.weatherIcon.alt = weather.weather_state_name;
         this.viewElems.weather_state_name.innerText = weather.weather_state_name;
         
-        const currTemp = weather.the_temp.toFixed(2);
-        const maxTemp = weather.max_temp.toFixed(2);
-        const minTemp = weather.min_temp.toFixed(2);
+        const currTemp = Math.round(weather.the_temp);
+        const maxTemp = Math.round(weather.max_temp);
+        const minTemp = Math.round(weather.min_temp);
     
     
-        this.viewElems.weatherCurrentTemp.innerText = `Current temperature: ${currTemp}°C`;
+        this.viewElems.weatherCurrentTemp.innerText = `${currTemp}°C`;
         this.viewElems.weatherMaxTemp.innerText = `Max temperature: ${maxTemp}°C`;
         this.viewElems.weatherMinTemp.innerText = `Min temperature: ${minTemp}°C`;
 

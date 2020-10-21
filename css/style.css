@@ -25,10 +25,9 @@ main {
 .weather-info {
   position: absolute;
   height: auto;
-  width: 40%;
-  max-width: 1000px;
+  width: 50%;
+  max-width: 1200px;
   max-height: 700px;
-  padding: 5%;
   border-radius: 10px;
   background: linear-gradient(135deg, rgba(255,255,255,.7) 0%, rgba(245,245,245,0.7) 100%);
   box-shadow: 0px 0px 10px 3px rgba(36,36,36,.05);
@@ -61,22 +60,73 @@ main {
   font-size: 100%;
 }
 
+
+
+/*!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 .weather-info__forecast-view {
   display: none;
+  flex-direction: column;
+}
+.weather-info__forecast-view h1 {
+  align-items: center;
+  width: 100%;
+  padding: 1% 10%;
+  margin: 0;
 }
 
-.weather-info__city {
+.main_weather_info {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
+  background-color: rgba(245,245,245,0.6);
 }
-.weather-info__city > img {
-  background-color: rgba(245,245,245,0.8);
-  border-radius: 15px;
-  padding: 10px;
-  width: 100px;
-  height: 100px;
+
+.forecast_temp,
+.forecast_svg,
+.forecast_wind {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
 }
+.forecast_temp h2 {
+  font-size: 80px;
+  margin: 0;
+  padding: 0;
+}
+.forecast_temp p {
+  margin: 0;
+  padding: 0;
+}
+.forecast_svg img {
+  stroke: black;
+  padding: 0;
+  margin: 0;
+  width: 110px;
+}
+.forecast_wind img {
+  width: 80px;
+  padding: 0;
+  margin: 0;
+}
+.forecast_wind p {
+  padding: 0;
+  margin: 0;
+}
+
+.forecast_wind span {
+  padding: 0;
+  margin: 10px 0 0 0;
+  font-weight: 700;
+
+}
+
+
+
+
 
 .weather-info__btn-return {
   padding: 5px 25px;

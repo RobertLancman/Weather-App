@@ -16,7 +16,14 @@
         Your browser is not supported!
     </video>
 
+
+
+
+
     <section class="weather-info" id="mainContainer">
+
+
+
 
       <div id="weatherSearchView" class="weather-info__search-view">
         <label class="weather-info__search__label" for="searchInput">Check weather:</label>
@@ -29,35 +36,52 @@
 
       
       <div id="weatherForecastView" class="weather-info__forecast-view">
-        <button class="weather-info__btn-return" id="returnToSearchBtn">return</button>
 
-        <div class="weather-info__city">
-          <h1 id="weatherCity"></h1>
-          <div>
-            <div id="wind_direction_compass"></div>
-            <img id="wind_icon"  width="20px"></img>
-            <div id="wind_speed"></div>
+        <h1 id="weatherCity"></h1>
+
+        <div class="main_weather_info">
+          <div class="forecast_temp">
+            <h2 id="weatherCurrentTemp"></h2>
+            <p id="weatherMaxTemp"></p>
+            <p id="weatherMinTemp"></p>       
+          </div>      
+          <div class="forecast_svg">
+            <img id="weatherIcon"></img>
+            <p id="weather_state_name"></p>
           </div>
-            <div>
-              <img id="weatherIcon"></img>
-              <p id="weather_state_name"></p>
-            </div>          
+          <div class="forecast_wind">
+            <img id="wind_icon"></img>
+            <span id="wind_direction_compass"></span>
+            <p id="wind_speed"></p>
+          </div>
         </div>
 
-        <div class="weather-info__temperatures">
-          <h2 id="weatherCurrentTemp"></h2>
-          <p id="weatherMaxTemp"></p>
-          <p id="weatherMinTemp"></p>
+        <div class="second_weather_info">
           <p id="air_pressure"></p>
           <p id="humidity"></p>
         </div>
 
 
+        <div id="other_days" class="small_weather_days">
+          <div class="small_weather"></div>
+          <div class="small_weather"></div>
+          <div class="small_weather"></div>
+          <div class="small_weather"></div>
+          <div class="small_weather"></div>
+          <div class="small_weather"></div>
+        </div>
+
+
+        <div class="weather_btn">
+          <button class="weather-info__btn-return" id="returnToSearchBtn">return</button>
+        </div>
+        
       </div>
-
-
     </section>
+
   </main>
+
+
   <script type="module" src="./scripts/main.js"></script>
 </body>
 </html> 
