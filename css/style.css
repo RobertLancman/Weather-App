@@ -15,19 +15,11 @@ main {
   height: 100vh;
  
 }
-/* .bg-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: -1;
-  overflow: hidden;
-} */
 .bg-video__content {
     height: 100%;
     width: 100%;
     object-fit: cover;
+    position: fixed;
 }
 
 .weather-info {
@@ -77,6 +69,13 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.weather-info__city > img {
+  background-color: rgba(245,245,245,0.8);
+  border-radius: 15px;
+  padding: 10px;
+  width: 100px;
+  height: 100px;
 }
 
 .weather-info__btn-return {

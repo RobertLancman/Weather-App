@@ -32,7 +32,14 @@ class WeatherApp  {
             let query = this.viewElems.searchInput.value;
             getWeatherByCity(query).then(data => {
                 this.displayWeatherData(data);
-            });
+                this.viewElems.searchInput.style.borderColor="black";
+                this.viewElems.errorInfo.innerText = "";
+            }).catch(() => {
+                this.fadeInOut();
+                this.viewElems.searchInput.style.borderColor="red";
+                this.viewElems.errorInfo.style.color="red";
+                this.viewElems.errorInfo.innerText = "Sorry, not found a city with that name";
+            })
         }
     }
 
@@ -61,7 +68,7 @@ class WeatherApp  {
         setTimeout(() => {
             this.switchView()
             this.fadeInOut();
-        }, 1000);
+        }, 500);
     }
 
     displayWeatherData = data => {
@@ -73,8 +80,14 @@ class WeatherApp  {
     
         this.viewElems.weatherCity.innerText = data.title;
         this.viewElems.weatherIcon.src = `https://www.metaweather.com/static/img/weather/${weather.weather_state_abbr}.svg`
+        
+        this.viewElems.wind_direction_compass.innerText = weather.wind_direction_compass; 
+        this.viewElems.wind_icon.src =`https://www.metaweather.com/static/img/windarrow.svg`
+        this.viewElems.wind_icon.style.transform = `rotate(${Math.round(weather.wind_direction - 180)}deg)`;
+        this.viewElems.wind_speed.innerText = `${weather.wind_speed.toFixed(2)} mph`
+
         this.viewElems.weatherIcon.alt = weather.weather_state_name;
-    
+        this.viewElems.weather_state_name.innerText = weather.weather_state_name;
         
         const currTemp = weather.the_temp.toFixed(2);
         const maxTemp = weather.max_temp.toFixed(2);
@@ -84,6 +97,9 @@ class WeatherApp  {
         this.viewElems.weatherCurrentTemp.innerText = `Current temperature: ${currTemp}°C`;
         this.viewElems.weatherMaxTemp.innerText = `Max temperature: ${maxTemp}°C`;
         this.viewElems.weatherMinTemp.innerText = `Min temperature: ${minTemp}°C`;
+
+        this.viewElems.air_pressure.innerText = `Air pressure: ${weather.air_pressure.toFixed(2)} hPa`
+        this.viewElems.humidity.innerText = `Humidity: ${weather.humidity} %`;
     }  
 
 }
