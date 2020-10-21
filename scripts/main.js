@@ -28,7 +28,7 @@ class WeatherApp  {
     handleSubmit = () => {
         if (event.type === 'click' || event.key === 'Enter') {
             this.fadeInOut();
-
+            
             let query = this.viewElems.searchInput.value;
             getWeatherByCity(query).then(data => {
                 this.displayWeatherData(data);

@@ -41,6 +41,7 @@ main {
   align-items: center;
   justify-content: space-between;
   height: 200px;
+  padding: 5%;
 }
 
 .weather-info__search-view label {
@@ -48,16 +49,32 @@ main {
 }
 
 .weather-info__search-view input {
-  padding: 10px 50px;
-  border: 2px solid black;
-  font-size: 150%;
+  padding: 10px 2%;
+  border: none;
+  font-size: 110%;
   text-align: center;
+  border-radius: 10px;
+  color: black;
 }
+.weather-info__search-view input::placeholder {
+  color: black;
+  border: none;
+}
+
 
 .weather-info__search-view button {
   padding: 10px 50px;
-  border: 2px solid black;
+  border: none;
   font-size: 100%;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: .5s;
+  margin-bottom: 10px;
+  background-color: #fff;
+}
+.weather-info__search-view button:hover {
+  background-color: rgba(0,191,255,0.2);
+  color: black;
 }
 
 
@@ -72,6 +89,7 @@ main {
   width: 100%;
   padding: 1% 10%;
   margin: 0;
+  font-size: 35px;
 }
 
 .main_weather_info {
@@ -79,12 +97,13 @@ main {
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-  background-color: rgba(245,245,245,0.6);
+  background-color: rgba(0,191,255,0.2);
 }
 
 .forecast_temp,
 .forecast_svg,
-.forecast_wind {
+.forecast_wind,
+.second_weather_info {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -121,14 +140,35 @@ main {
   padding: 0;
   margin: 10px 0 0 0;
   font-weight: 700;
+}
+
+.second_weather_info {
+  flex-direction: row;
+  background-color: rgba(0,191,255,0.2);
+  justify-content: space-evenly;
 
 }
 
 
 
-
+.weather_btn {
+  width: 100%;
+  padding: 10px;
+  margin: 0;
+  display: flex; 
+  justify-content: flex-start;
+  align-items: center;
+}
 
 .weather-info__btn-return {
   padding: 5px 25px;
   border: 2px solid black;
+  border-radius: 10px;
+  background-color: none;
+  transition: .5s;
+  cursor: pointer;
+}
+.weather-info__btn-return:hover {
+  background-color: rgba(0,191,255,0.2);
+  color: black;
 }
