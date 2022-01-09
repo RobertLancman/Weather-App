@@ -8,7 +8,7 @@ export const mapListToDOMElements = listOfId => {
     for (const id of listOfId) {
         _viewElems[id] = _getDOMElem(id);
     }
-
+    console.log(_viewElems);
     return _viewElems;
 }
 //function that add to _viewElems every id from html and make object with the same name

@@ -27,8 +27,8 @@ class WeatherApp {
     );
   };
 
-  handleSubmit = () => {
-    if (event.type === "click" || event.key === "Enter") {
+  handleSubmit = (e) => {
+    if (e.type === "click" || e.key === "Enter") {
       this.fadeInOut();
 
       let query = this.viewElems.searchInput.value;
@@ -57,7 +57,6 @@ class WeatherApp {
       this.viewElems.loader.style.display = "block";
     } else {
       this.viewElems.loader.style.display = "none";
-
       this.viewElems.mainContainer.style.opacity = "1";
     }
   };
@@ -86,9 +85,18 @@ class WeatherApp {
     this.fadeInOut();
 
     let weather = [];
-    for (let i = 0; i < data.consolidated_weather.length; i++) {
-      weather.push(data.consolidated_weather[i]);
-    }
+    // for (let i = 0; i < data.consolidated_weather.length; i++) {
+    //   weather.push(data.consolidated_weather[i]);    
+    // }
+
+    // for ( const [index,v] of data.consolidated_weather.entries()) {
+    //   weather.push(data.consolidated_weather[index]);
+    // }
+
+    data.consolidated_weather.forEach((_,index) => {
+      weather.push(data.consolidated_weather[index]);
+    })
+
 
     this.viewElems.weatherCity.innerText = `Weather in ${data.title}`;
     this.viewElems.weatherIcon.src = `https://www.metaweather.com/static/img/weather/${weather[0].weather_state_abbr}.svg`;

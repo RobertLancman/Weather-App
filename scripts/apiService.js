@@ -7,12 +7,14 @@ export const getWeatherByCity = city => {
     .then(resp => resp.json())
     .then(data => {
         const woeid = data[0].woeid;
-
         return fetch(
             `https://www.metaweather.com/api/location/${woeid}/`
         )
             .then(resp => resp.json())
-            .then(data => data);
+            .then(data => {
+                console.log(data);
+                return data
+            });
 
     });
 }
