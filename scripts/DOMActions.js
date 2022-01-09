@@ -11,5 +11,4 @@ export const mapListToDOMElements = listOfId => {
     console.log(_viewElems);
     return _viewElems;
 }
-//function that add to _viewElems every id from html and make object with the same name
 

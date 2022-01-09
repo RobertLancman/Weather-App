@@ -80,18 +80,34 @@ class WeatherApp {
     }, 500);
   };
 
+  displaySmallWeather() {
+
+    let smallWeatherHTML = 
+    `
+          <div class="small_weather">
+            <p class="applicable_date_small"></p>
+            <div class="small_temp">
+              <h2 class="weatherCurrentTemp_small"></h2>
+              <img class="weatherIcon_small"></img>
+            </div>
+            <p class="weatherMaxTemp_small"></p>
+            <p class="weatherMinTemp_small"></p>       
+            <div class="small_wind">
+              <img class="wind_icon_small"></img>
+              <p class="wind_speed_small"></p>
+            </div>
+          </div>
+    `
+    for (let i = 0; i < 6; i++) {
+      this.viewElems.other_days.insertAdjacentHTML('afterbegin', smallWeatherHTML);
+    }
+  }
+
   displayWeatherData = (data) => {
     this.switchView();
     this.fadeInOut();
 
     let weather = [];
-    // for (let i = 0; i < data.consolidated_weather.length; i++) {
-    //   weather.push(data.consolidated_weather[i]);    
-    // }
-
-    // for ( const [index,v] of data.consolidated_weather.entries()) {
-    //   weather.push(data.consolidated_weather[index]);
-    // }
 
     data.consolidated_weather.forEach((_,index) => {
       weather.push(data.consolidated_weather[index]);
@@ -127,7 +143,11 @@ class WeatherApp {
     )} hPa`;
     this.viewElems.humidity.innerText = `Humidity: ${weather[0].humidity} %`;
 
-    //  console.log(weather[1].weather_state_abbr);
+
+
+    // small weather 
+
+    this.displaySmallWeather();
 
     let applicable_date_small = document.querySelectorAll(
       ".applicable_date_small"
