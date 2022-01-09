@@ -12,7 +12,6 @@ export const getWeatherByCity = city => {
         )
             .then(resp => resp.json())
             .then(data => {
-                console.log(data);
                 return data
             });
 

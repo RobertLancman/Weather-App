@@ -64,14 +64,15 @@ class WeatherApp {
   switchView = () => {
     if (this.viewElems.weatherSearchView.style.display !== "none") {
       this.viewElems.weatherSearchView.style.display = "none";
-      this.viewElems.weatherForecastView.style.display = "block";
+      this.viewElems.weatherForecastView.style.display = "flex";
     } else {
-      this.viewElems.weatherSearchView.style.display = "block";
+      this.viewElems.weatherSearchView.style.display = "flex";
       this.viewElems.weatherForecastView.style.display = "none";
     }
   };
 
   returnToSearch = () => {
+    this.viewElems.searchInput.value = '';
     this.fadeInOut();
 
     setTimeout(() => {
@@ -79,29 +80,6 @@ class WeatherApp {
       this.fadeInOut();
     }, 500);
   };
-
-  displaySmallWeather() {
-
-    let smallWeatherHTML = 
-    `
-          <div class="small_weather">
-            <p class="applicable_date_small"></p>
-            <div class="small_temp">
-              <h2 class="weatherCurrentTemp_small"></h2>
-              <img class="weatherIcon_small"></img>
-            </div>
-            <p class="weatherMaxTemp_small"></p>
-            <p class="weatherMinTemp_small"></p>       
-            <div class="small_wind">
-              <img class="wind_icon_small"></img>
-              <p class="wind_speed_small"></p>
-            </div>
-          </div>
-    `
-    for (let i = 0; i < 6; i++) {
-      this.viewElems.other_days.insertAdjacentHTML('afterbegin', smallWeatherHTML);
-    }
-  }
 
   displayWeatherData = (data) => {
     this.switchView();
@@ -147,7 +125,6 @@ class WeatherApp {
 
     // small weather 
 
-    this.displaySmallWeather();
 
     let applicable_date_small = document.querySelectorAll(
       ".applicable_date_small"
