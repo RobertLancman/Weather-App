@@ -27,8 +27,8 @@ class WeatherApp {
     );
   };
 
-  handleSubmit = () => {
-    if (event.type === "click" || event.key === "Enter") {
+  handleSubmit = (e) => {
+    if (e.type === "click" || e.key === "Enter") {
       this.fadeInOut();
 
       let query = this.viewElems.searchInput.value;
@@ -57,7 +57,6 @@ class WeatherApp {
       this.viewElems.loader.style.display = "block";
     } else {
       this.viewElems.loader.style.display = "none";
-
       this.viewElems.mainContainer.style.opacity = "1";
     }
   };
@@ -65,14 +64,15 @@ class WeatherApp {
   switchView = () => {
     if (this.viewElems.weatherSearchView.style.display !== "none") {
       this.viewElems.weatherSearchView.style.display = "none";
-      this.viewElems.weatherForecastView.style.display = "block";
+      this.viewElems.weatherForecastView.style.display = "flex";
     } else {
-      this.viewElems.weatherSearchView.style.display = "block";
+      this.viewElems.weatherSearchView.style.display = "flex";
       this.viewElems.weatherForecastView.style.display = "none";
     }
   };
 
   returnToSearch = () => {
+    this.viewElems.searchInput.value = '';
     this.fadeInOut();
 
     setTimeout(() => {
@@ -86,9 +86,11 @@ class WeatherApp {
     this.fadeInOut();
 
     let weather = [];
-    for (let i = 0; i < data.consolidated_weather.length; i++) {
-      weather.push(data.consolidated_weather[i]);
-    }
+
+    data.consolidated_weather.forEach((_,index) => {
+      weather.push(data.consolidated_weather[index]);
+    })
+
 
     this.viewElems.weatherCity.innerText = `Weather in ${data.title}`;
     this.viewElems.weatherIcon.src = `https://www.metaweather.com/static/img/weather/${weather[0].weather_state_abbr}.svg`;
@@ -119,7 +121,10 @@ class WeatherApp {
     )} hPa`;
     this.viewElems.humidity.innerText = `Humidity: ${weather[0].humidity} %`;
 
-    //  console.log(weather[1].weather_state_abbr);
+
+
+    // small weather 
+
 
     let applicable_date_small = document.querySelectorAll(
       ".applicable_date_small"
